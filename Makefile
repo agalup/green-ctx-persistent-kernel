@@ -2,7 +2,7 @@ NVCC := nvcc
 ARCH ?= 80
 ARCHFLAGS := -gencode arch=compute_$(ARCH),code=sm_$(ARCH)
 BINDIR := bin
-BIN := $(BINDIR)/green_ctx_concurrent_test
+BIN := $(BINDIR)/green_ctx_test
 
 .PHONY: all clean run
 
@@ -15,8 +15,8 @@ $(BINDIR):
 	mkdir -p $(BINDIR)
 
 run: $(BIN)
-	@echo "Make sure MPS is OFF before running."
-	./$(BIN)
+	@echo "MPS must be OFF. Run multiple times — result is non-deterministic."
+	@./$(BIN)
 
 clean:
 	rm -rf $(BINDIR)
